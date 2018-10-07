@@ -17,6 +17,9 @@ jobs:
 
     working_directory: ~/repo
 
+    environment:
+      MONGODB_URI: mongodb://localhost:27017/testdb
+
     steps:
       - checkout
 
