@@ -36,6 +36,36 @@ describe('tournaments', () => {
       .catch(ok => done())
   })
 
+  it('can join a tournament', () => {
+    return app.join(TOURNAMENT_ID, {
+      id: '1234',
+      username: 'illegal-function',
+      rating: 950,
+    }).then(doc => {
+      expect(doc.joins).to.not.be(undefined)
+      expect(doc.joins[0].id).to.be('1234')
+      expect(doc.joins[0].rating).to.be(950)
+    })
+  })
+
+  it('can not double join', done => {
+    app.join(TOURNAMENT_ID, {
+      id: '1234',
+      username: 'illegal-function',
+      rating: 950,
+    }).then(whoops => done(new Error('Double join should not be possoble')))
+      .catch(ok => done())
+  })
+
+  it('fails on innvalid user', done => {
+    app.join(TOURNAMENT_ID, {
+      id: '5678',
+      username: 'illegal-function',
+      ok: 1,
+    }).then(whoops => done(new Error('Should not accept invalid user')))
+      .catch(ok => done())
+  })
+
   it('can delete a tournament', () => {
     return app.delete(TOURNAMENT_ID)
   })
