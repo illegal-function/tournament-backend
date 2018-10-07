@@ -26,6 +26,16 @@ describe('tournaments', () => {
     })
   })
 
+  it('can lock config', done => {
+    app.lockConfig(TOURNAMENT_ID)
+      .then(doc => app.update(TOURNAMENT_ID, {
+        teamsize: 2,
+        signup: 'any',
+      }))
+      .then(ok => done(new Error('Should not be possible since config should be locked')))
+      .catch(ok => done())
+  })
+
   it('can delete a tournament', () => {
     return app.delete(TOURNAMENT_ID)
   })
