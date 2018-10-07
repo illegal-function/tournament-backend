@@ -20,6 +20,7 @@ jobs:
     environment:
       MONGODB_URI: mongodb://localhost:27017/testdb
       DEBUG: trn:*
+      TOURNAMENT_COLLECTION: 'tournaments'
 
     steps:
       - checkout

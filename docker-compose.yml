@@ -19,6 +19,7 @@ services:
     environment:
       - MONGODB_URI=mongodb://mongodb:27017/test
       - DEBUG=trn:*
+      - TOURNAMENT_COLLECTION=tournaments
     networks:
       - ptp
     command: npm test
