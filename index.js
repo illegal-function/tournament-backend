@@ -4,5 +4,6 @@ module.exports = (connection) => ({
   update: require('./lib/queries/update')(connection),
   lockConfig: require('./lib/queries/lock-config')(connection),
   join: require('./lib/queries/join')(connection),
+  unjoin: require('./lib/queries/unjoin')(connection),
   delete: require('./lib/queries/delete')(connection),
 })

@@ -66,6 +66,21 @@ describe('tournaments', () => {
       .catch(ok => done())
   })
 
+  it('can unjoin', () => {
+    app.unjoin(TOURNAMENT_ID, {
+      id: '1234',
+    }).then(doc => {
+      expect(doc.joins.length).to.be(0)
+    })
+  })
+
+  it('fails to unjoin if you haven\'t joned', done => {
+    app.unjoin(TOURNAMENT_ID, {
+      id: '9876',
+    }).then(whoops => done(new Error('Unjoined without having joned')))
+      .catch(ok => done())
+  })
+
   it('can delete a tournament', () => {
     return app.delete(TOURNAMENT_ID)
   })
