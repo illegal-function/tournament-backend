@@ -1,6 +1,7 @@
 /* global describe it after */
 
 const TOURNAMENT_ID = '1234'
+const expect = require('expect.js')
 const connection = require('../lib/connection')
 const app = require('..')(connection)
 
@@ -9,6 +10,9 @@ describe('tournaments', () => {
     return app.create(TOURNAMENT_ID, {
       teamsize: 2,
       signup: 'any',
+    }).then(doc => {
+      expect(doc.config.teamsize).to.be(2)
+      expect(doc.config.signup).to.be('any')
     })
   })
 
@@ -16,6 +20,9 @@ describe('tournaments', () => {
     return app.update(TOURNAMENT_ID, {
       teamsize: 3,
       signup: 'solo',
+    }).then(doc => {
+      expect(doc.config.teamsize).to.be(3)
+      expect(doc.config.signup).to.be('solo')
     })
   })
 
