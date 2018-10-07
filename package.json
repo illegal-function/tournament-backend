@@ -4,7 +4,8 @@
   "description": "Tournament framework",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha && npx eslint ."
+    "test": "npx mocha && npx eslint .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/illegal-function/basic-tournament#readme",
   "dependencies": {
+    "debug": "^4.0.1",
+    "fastest-validator": "^0.6.10",
     "mongodb": "^3.1.6"
   },
   "devDependencies": {

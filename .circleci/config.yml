@@ -19,6 +19,7 @@ jobs:
 
     environment:
       MONGODB_URI: mongodb://localhost:27017/testdb
+      DEBUG: trn:*
 
     steps:
       - checkout

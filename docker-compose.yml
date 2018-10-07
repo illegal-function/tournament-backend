@@ -18,6 +18,7 @@ services:
       - ./:/usr/src/app
     environment:
       - MONGODB_URI=mongodb://mongodb:27017/test
+      - DEBUG=trn:*
     networks:
       - ptp
     command: npm test
