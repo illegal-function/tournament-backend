@@ -45,6 +45,7 @@ describe('tournaments', () => {
       expect(doc.joins).to.not.be(undefined)
       expect(doc.joins[0].id).to.be('1234')
       expect(doc.joins[0].rating).to.be(950)
+      expect(doc.no_joins).to.be(1)
     })
   })
 
@@ -71,6 +72,7 @@ describe('tournaments', () => {
       id: '1234',
     }).then(doc => {
       expect(doc.joins.length).to.be(0)
+      expect(doc.no_joins).to.be(0)
     })
   })
 
