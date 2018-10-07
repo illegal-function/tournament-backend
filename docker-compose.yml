@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    networks:
+      - ptp
+  mongodb:
+    image: mongo:latest
+    networks:
+      - ptp
+  application:
+    image: node:latest
+    depends_on:
+      - rabbitmq
+      - mongodb
+    working_dir: "/usr/src/app"
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/test
+    networks:
+      - ptp
+    command: npm test
+networks:
+  ptp:
