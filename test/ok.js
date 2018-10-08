@@ -104,7 +104,5 @@ describe('tournaments', () => {
     return app.delete(TOURNAMENT_ID) // .then(console.log)
   })
 
-  after(() => {
-    return connection.close()
-  })
+  after(() => connection.close())
 })
