@@ -84,13 +84,20 @@ describe('tournaments', () => {
   })
 
   it('can lock signup when the numbers of joins allow for it', () => {
-    return app.join(TOURNAMENT_ID, { id: '1', username: '1', rating: 1 })
-      .then(ok => app.join(TOURNAMENT_ID, { id: '2', username: '2', rating: 2 }))
-      .then(ok => app.join(TOURNAMENT_ID, { id: '3', username: '3', rating: 3 }))
-      .then(ok => app.join(TOURNAMENT_ID, { id: '4', username: '4', rating: 4 }))
-      .then(ok => app.join(TOURNAMENT_ID, { id: '5', username: '5', rating: 5 }))
-      .then(ok => app.join(TOURNAMENT_ID, { id: '6', username: '6', rating: 6 }))
+    return app.join(TOURNAMENT_ID, { id: '1', username: 'seed 1', rating: 1600 })
+      .then(ok => app.join(TOURNAMENT_ID, { id: '2', username: 'seed 2', rating: 1500 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '3', username: 'seed 3', rating: 1400 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '4', username: 'seed 4', rating: 1300 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '5', username: 'seed 5', rating: 1200 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '6', username: 'seed 6', rating: 1100 }))
       .then(ok => app.lockSignup(TOURNAMENT_ID))
+  })
+
+  it('can select teams', () => {
+    return app.selectTeams(TOURNAMENT_ID)
+      .then(doc => {
+        expect(doc.no_teams).to.be(3)
+      })
   })
 
   it('can delete a tournament', () => {
