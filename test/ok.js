@@ -90,13 +90,24 @@ describe('tournaments', () => {
       .then(ok => app.join(TOURNAMENT_ID, { id: '4', username: 'seed 4', rating: 1300 }))
       .then(ok => app.join(TOURNAMENT_ID, { id: '5', username: 'seed 5', rating: 1200 }))
       .then(ok => app.join(TOURNAMENT_ID, { id: '6', username: 'seed 6', rating: 1100 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '7', username: 'seed 7', rating: 1000 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '8', username: 'seed 8', rating: 900 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '9', username: 'seed 9', rating: 800 }))
+      .then(ok => app.join(TOURNAMENT_ID, { id: '10', username: 'seed 10', rating: 700 }))
       .then(ok => app.lockSignup(TOURNAMENT_ID))
   })
 
   it('can select teams', () => {
     return app.selectTeams(TOURNAMENT_ID)
       .then(doc => {
-        expect(doc.no_teams).to.be(3)
+        expect(doc.no_teams).to.be(5)
+      })
+  })
+
+  it('can create brackets', () => {
+    return app.createBrackets(TOURNAMENT_ID)
+      .then(doc => {
+        // do some testing
       })
   })
 
