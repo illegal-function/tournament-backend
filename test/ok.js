@@ -5,6 +5,8 @@ const expect = require('expect.js')
 const connection = require('../lib/connection')
 const app = require('..')(connection)
 
+let cache = null
+
 describe('tournaments', () => {
   it('can create a tournament', () => {
     return app.create(TOURNAMENT_ID, {
@@ -108,11 +110,16 @@ describe('tournaments', () => {
     return app.createBrackets(TOURNAMENT_ID)
       .then(doc => {
         // do some testing
+        cache = doc
       })
   })
 
+  it('can report score', () => {
+    return app.reportScore(TOURNAMENT_ID, cache.matches[0].id, [2, 1])
+  })
+
   it('can delete a tournament', () => {
-    return app.delete(TOURNAMENT_ID) // .then(console.log)
+    return app.delete(TOURNAMENT_ID).then(e => JSON.stringify(e, null, 2)).then(console.log)
   })
 
   after(() => connection.close())
