@@ -16,12 +16,15 @@ services:
     working_dir: "/usr/src/app"
     volumes:
       - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
     environment:
       - MONGODB_URI=mongodb://mongodb:27017/test
       - DEBUG=trn:*
       - TOURNAMENT_COLLECTION=tournaments
     networks:
       - ptp
-    command: npm test
+    command: bash -c "npm i && npm test"
 networks:
   ptp:
+volumes:
+  node_modules:
