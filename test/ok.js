@@ -116,6 +116,19 @@ describe('tournaments', () => {
 
   it('can report score', () => {
     return app.reportScore(TOURNAMENT_ID, cache.matches[0].id, [2, 1])
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[1].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[2].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[3].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[4].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[5].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[6].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[7].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[8].id, [2, 1]))
+      .then(ok => app.reportScore(TOURNAMENT_ID, cache.matches[9].id, [2, 1]))
+  })
+
+  it('can end a tournament', () => {
+    return app.end(TOURNAMENT_ID)
   })
 
   it('can delete a tournament', () => {

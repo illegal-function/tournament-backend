@@ -9,5 +9,6 @@ module.exports = (connection) => ({
   selectTeams: require('./lib/queries/select-teams')(connection),
   createBrackets: require('./lib/queries/create-brackets')(connection),
   reportScore: require('./lib/queries/report-score')(connection),
+  end: require('./lib/queries/end')(connection),
   delete: require('./lib/queries/delete')(connection),
 })
